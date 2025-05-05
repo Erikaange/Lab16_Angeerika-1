@@ -1,6 +1,8 @@
 from pathlib import Path
 import matplotlib.pyplot as plt
 import csv
+from datetime import datetime
+# This program reads a CSV file containing unemployment data and plots it using matplotlib.
 
 path = Path('OHUR (1).csv')
 lines = path.read_text(encoding='utf-8').splitlines()
@@ -17,7 +19,8 @@ dates = []
 unemployment_rate = []
 
 for row in reader:
-    date = row[0]
+    current_date = datetime.strptime(row[0], '%Y-%m-%d')
+    date = current_date
     unemployment = float(row[1])
     dates.append(date)
     unemployment_rate.append(unemployment)
